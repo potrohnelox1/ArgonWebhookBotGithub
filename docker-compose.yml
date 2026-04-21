@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  # ─── PostgreSQL Database ─────────────────────────────────────────────────────
+  db:
+    image: postgres:16-alpine
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres_password
+      POSTGRES_DB: my_database
+    ports:
+      - "127.0.0.1:5432:5432" # Expose to host so you can connect via pgAdmin/DBeaver
+    volumes:
+      - pg_data:/var/lib/postgresql/data # Persist data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d my_database"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # ─── Your Application ───────────────────────────────────────────────────────
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: hono_events_app
+    restart: unless-stopped
+    ports:
+      - "3040:3040"
+    env_file:
+      - .env
+    depends_on:
+      db:
+        condition: service_healthy # Wait for Postgres to be ready before starting
+
+volumes:
+  pg_data:

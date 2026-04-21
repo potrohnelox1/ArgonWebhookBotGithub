@@ -1,0 +1,28 @@
+{
+  "name": "argon-bot-github-webhooks",
+  "private": true,
+  "packageManager": "npm@10.9.0",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/src/index.js",
+    "db:generate": "prisma generate",
+    "db:push": "prisma db push",
+    "db:migrate": "prisma migrate dev",
+    "db:seed": "prisma db seed"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.19.9",
+    "@prisma/adapter-pg": "^7.4.0",
+    "@prisma/client": "^7.4.0",
+    "dotenv": "^17.2.3",
+    "hono": "^4.12.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.17",
+    "prisma": "^7.4.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.8.3"
+  }
+}

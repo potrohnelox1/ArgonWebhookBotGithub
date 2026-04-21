@@ -1,0 +1,41 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model RawEvent {
+  id        String   @id @default(cuid())
+  type      String
+  eventData Json
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("raw_events")
+}
+
+model Feature {
+  id                String   @id @default(cuid())
+  name              String   @unique
+  enabled           Boolean  @default(false)
+  additionalConfigs Json?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@map("features")
+}
+
+model RepoStar {
+  id                 String   @id @default(cuid())
+  repoId             String   @unique
+  repoName           String
+  count              Int      @default(0)
+  lastNotifiedCount  Int      @default(0)
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  @@map("repo_stars")
+}
