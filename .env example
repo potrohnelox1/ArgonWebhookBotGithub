@@ -1,2 +1,4 @@
 DATABASE_URL="postgres://e81b0c4b5638d8dacc61d8b9d476e81e367c35d8d145c61cb753706c5411e308:sk_EE6hqtct4qqCLcz5Z71Ul@db.prisma.io:5432/postgres?sslmode=require"
 PORT=3040
+BOT_TOKEN=xxxxxxxxxxxxxxxxxxxxxxxxxxx
+CHANNEL_ID=xxxxxxxxxxxxxxxxxxxxxx

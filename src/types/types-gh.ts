@@ -49,6 +49,7 @@ interface GitHubUser {
     ref: string;           // "refs/heads/main"
     before: string;        // sha
     after: string;         // sha
+    deleted?:boolean
     commits: {
       id: string;
       message: string;
@@ -63,6 +64,7 @@ interface GitHubUser {
     head_commit: PushEvent['commits'][number] | null;
     forced: boolean;
     compare: string;
+    created?:boolean
     pusher: { name: string; email: string };
     sender: GitHubUser;
     repository: GitHubRepository;
@@ -71,6 +73,8 @@ interface GitHubUser {
   
   // ─── pull_request ────────────────────────────────────
   interface PullRequestEvent {
+    label:{name:string}
+    requested_reviewer:{name:string,login:string}
     action:
       | 'opened' | 'closed' | 'reopened' | 'synchronize'
       | 'edited'  | 'assigned' | 'unassigned'

@@ -13,6 +13,7 @@
     "db:seed": "prisma db seed"
   },
   "dependencies": {
+    "@argon-sdk/core": "^1.0.3",
     "@hono/node-server": "^1.19.9",
     "@prisma/adapter-pg": "^7.4.0",
     "@prisma/client": "^7.4.0",
